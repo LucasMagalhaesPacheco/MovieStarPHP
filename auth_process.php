@@ -7,6 +7,7 @@ require_once("db.php");
 require_once("models/Message.php");
 
 $message = new Message($BASE_URL);
+$userDao = new UserDAO($conn, $BASE_URL);
 
 
 // Verifica o tipo do forms
@@ -25,7 +26,24 @@ if($type == "register") {
     //miminum data check
 
     if($name && $lastname && $email && $password) {
+      //To checking password
 
+      if($password === $confirmpassword ) {
+
+        //To checking unique Email
+        if($userDao->findByEmail($email) === false) {
+
+        } else {
+          //submit email iqual a true
+         $message->setMessage("Email is registered", "error", "back");
+
+        }
+              
+        
+      } else {
+         //submit password no iqual 
+         $message->setMessage("Passwords not the same", "error", "back");
+      }
 
     } else {
         //submit message minium data missing

@@ -2,7 +2,14 @@
 
  require_once("globals.php");
  require_once("db.php");
-  $flassMessage = [];
+ require_once("models/Message.php");
+  $message = new Message($BASE_URL);
+  $flassMessage = $message->getMessage();
+
+  if(!empty($flassMessage["msg"])) {
+    // Aqui vamos limpar a mensagem de erro ou acerto do Código
+    $message->clearMessage();
+  }
 ?>
 
 <!DOCTYPE html>
