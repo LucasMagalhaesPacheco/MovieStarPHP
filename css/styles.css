@@ -81,7 +81,10 @@
     padding: 10px;
     border: solid 1px #000;
     text-align: center;
-
+    width: 50%;
+    color: green;
+    background-color: #d1e7dd;
+    border-color: #BADBCC;
 }
 
 .msg.error {
