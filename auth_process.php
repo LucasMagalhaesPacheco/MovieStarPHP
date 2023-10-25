@@ -33,6 +33,22 @@ if($type == "register") {
         //To checking unique Email
         if($userDao->findByEmail($email) === false) {
 
+          $user = new User();
+
+          // Creation token and password;
+          $userToken = $user->generateToken();
+          // This function of PHP is for protect password
+          $finalPassword = $user->generatePassword($password);
+
+          $user->name = $name;
+          $user->lastname = $lastname;
+          $user->email = $email;
+          $user->password = $finalPassword;
+          $user->token = $userToken;
+          //Autorization Function
+          $auth = true;
+          $userDao->create($user, $auth)
+
         } else {
           //submit email iqual a true
          $message->setMessage("Email is registered", "error", "back");
