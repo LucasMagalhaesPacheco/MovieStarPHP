@@ -44,7 +44,7 @@ include_once("templates/header.php")
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirmação de senha:</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha">
+                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirme sua senha">
                     </div>
                     <input type="submit" class="btn card-btn" value="Registrar">
                     </form>

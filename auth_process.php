@@ -47,7 +47,7 @@ if($type == "register") {
           $user->token = $userToken;
           //Autorization Function
           $auth = true;
-          $userDao->create($user, $auth)
+          $userDao->create($user, $auth);
 
         } else {
           //submit email iqual a true
