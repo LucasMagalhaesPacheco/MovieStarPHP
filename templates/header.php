@@ -3,6 +3,7 @@
  require_once("globals.php");
  require_once("db.php");
  require_once("models/Message.php");
+ require_once("dao/UserDAO.php");
   $message = new Message($BASE_URL);
   $flassMessage = $message->getMessage();
 
@@ -10,6 +11,11 @@
     // Aqui vamos limpar a mensagem de erro ou acerto do Código
     $message->clearMessage();
   }
+
+  $userDao = new UserDAO($conn, $BASE_URL);
+  // Verify user login
+  
+  $userData = $userDao->verifyToken(false);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +35,7 @@
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?php echo $BASE_URL ?>" class="navbar-brand">
         <img src="<?php echo $BASE_URL ?>img/logo.png" alt="Moviestar Logo" id="logo">
-         <span id="moviestar-title">MovieStar</span>
+         <span id="moviestar-title">FlixNerd</span>
          </a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
@@ -42,9 +48,24 @@
          </form>
          <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav">
+               <?php if($userData):  ?>
                 <li class="nav-item">
+                    <a href="<?php echo $BASE_URL ?>newmovie.php" class="nav-link"><i class="far fa-plus-square"></i> Incluir filme </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo $BASE_URL ?>dashboard.php" class="nav-link">My Movies </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo $BASE_URL ?>editprofile.php" class="nav-link bold"> <?php echo $userData->name ?> </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo $BASE_URL ?>logout.php" class="nav-link">Logout </a>
+                </li>
+                 <?php else: ?>
+                    <li class="nav-item">
                     <a href="<?php echo $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar </a>
                 </li>
+                <?php endif; ?>
             </ul>
          </div>
         </nav>

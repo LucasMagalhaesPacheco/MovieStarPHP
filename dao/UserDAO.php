@@ -56,11 +56,58 @@ class UserDAO implements UserDAOInterface {
 
     }
 
-    public function findByToken($token) {
-
-    }
+    
 
     public function verifyToken($protected = false) {
+       if(!empty($_SESSION["token"])) {
+         // Get token for session
+
+         $token = $_SESSION["token"];
+
+         $user = $this->findByToken($token);
+
+         if($user) {
+            
+           return $user;
+
+        } else if ($protected) {
+             //Redirect not authorization user
+             $this->message->setMessage("user not authorization", "error", "index.php");
+
+        } 
+         
+         
+         
+       } else if ($protected) {
+        //Redirect not authorization user
+        $this->message->setMessage("user not authorization", "error", "index.php");
+
+       } 
+
+       
+    }
+
+    public function findByToken($token) {
+
+        if($token != "") {
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+            $stmt->bindParam(":token", $token);
+            $stmt->execute();
+    
+            //Utilizado o método Rowcount para verificarmos a quantidade de linhas, que chegou do banco de dados
+            if($stmt->rowCount() > 0) {
+                $data = $stmt->fetch();
+                $user = $this->buildUser($data);
+
+                return $user;
+            } else 
+            {
+                return false;
+            }
+    
+           } else {
+            return false;
+           }
 
     }
 
@@ -108,8 +155,16 @@ class UserDAO implements UserDAOInterface {
     public function changePassword(User $user) {
 
     }
+
+    public function destroyToken() {
+        //remove token in the session
+        $_SESSION["token"] = "";
+
+        //redirect and message of sucess;
+        $this->message->setMessage("Logout sucess", "sucess", "index.php");
+    }
+
+
+   
+    
 }
-
-
-
-?>
