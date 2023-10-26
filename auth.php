@@ -11,11 +11,11 @@ include_once("templates/header.php")
                     <input type="hidden" name="type" value="login">
                     <div class="form-group">
                         <label for="email">E-mail:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Digie seu E-mail">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu E-mail">
                     </div>
                     <div class="form-group">
                         <label for="password">Senha:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Digie sua senha">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha">
                     </div>
                     <input type="submit" class="btn card-btn" value="Entrar">
                 </form>
@@ -27,11 +27,11 @@ include_once("templates/header.php")
                         <input type="hidden" name="type" value="register">
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Digie seu E-mail">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu E-mail">
                         </div> 
                         <div class="form-group">
                             <label for="name">name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Digie seu Nome">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Digite seu Nome">
                         </div>
                         <div class="form-group">
                         <label for="lastname">sobrenome:</label>
@@ -40,11 +40,11 @@ include_once("templates/header.php")
                     </div>
                     <div class="form-group">
                         <label for="password">Senha:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Digie sua senha">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha">
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirmação de senha:</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha">
+                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirme sua senha">
                     </div>
                     <input type="submit" class="btn card-btn" value="Registrar">
                     </form>
